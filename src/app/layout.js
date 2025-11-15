@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { getUserInfoByToken } from '@/data/users'
 import { Are_You_Serious } from 'next/font/google'
 import Image from 'next/image'
-import logo from './logo.jpg'
+import logo from '../../public/logo.jpg'
 
 const serious = Are_You_Serious({
   subsets: ['latin'],
