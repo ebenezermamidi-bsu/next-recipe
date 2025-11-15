@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { getUserIdByToken } from '@/data/users'
 import { initDB } from '@/db/init'
 import { createPost } from '@/data/posts'
+import { revalidateTag } from 'next/cache'
 
 export default async function CreatePostPage() {
   async function createPostAction(data) {
@@ -19,6 +20,7 @@ export default async function CreatePostPage() {
       title: data.get('title'),
       content: data.get('content'),
     })
+    revalidateTag('posts')
     redirect(`/posts/${post.id}`)
   }
   return <CreatePost createPostAction={createPostAction} />

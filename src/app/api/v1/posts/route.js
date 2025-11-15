@@ -1,12 +1,12 @@
+//export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
+
 import { initDB } from '@/db/init'
 import { listAllPosts, createPost } from '@/data/posts'
 export async function GET(request) {
   await initDB()
   const posts = await listAllPosts()
-  return new Response(JSON.stringify(posts), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  })
+  return Response.json({ posts, currentTime: Date.now() })
 }
 export async function POST(request) {
   await initDB()

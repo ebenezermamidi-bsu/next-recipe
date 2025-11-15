@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-export function FullPost({ title, author, contents }) {
+export function FullPost({ title, author, content }) {
   return (
     <article>
       <h2>{title}</h2>
-      <div>{contents}</div>
+      <div>{content}</div>
       <br />
       <em>
         Written by <strong>{author.username}</strong>
@@ -16,5 +16,5 @@ FullPost.propTypes = {
   author: PropTypes.shape({
     username: PropTypes.string.isRequired,
   }).isRequired,
-  contents: PropTypes.string,
+  content: PropTypes.string,
 }
