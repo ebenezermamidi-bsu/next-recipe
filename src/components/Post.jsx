@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types'
+import Link from 'next/link'
+
 export function Post({ _id, title, author }) {
   return (
     <article>
-      <h3>{title}</h3>
+      <h3>
+        <Link href={`/posts/${_id}`}>{title}</Link>
+      </h3>
       <em>
         Written by <strong>{author.username}</strong>
       </em>
@@ -10,7 +14,7 @@ export function Post({ _id, title, author }) {
   )
 }
 Post.propTypes = {
-  _id: PropTypes.string.isRequired,
+  _id: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.shape({
     username: PropTypes.string.isRequired,

@@ -1,11 +1,27 @@
+import { Navigation } from '@/components/Navigation'
+import { cookies } from 'next/headers'
+import { getUserInfoByToken } from '@/data/users'
+
 export const metadata = {
   title: 'My Next Blog App',
   description: 'A blog app built with Next.js',
 }
-export default function RootLayout({ children }) {
+
+async function logoutAction() {
+  'use server'
+  cookies().delete('AUTH_TOKEN', { path: '/' })
+}
+
+export default async function RootLayout({ children }) {
+  const token = cookies().get('AUTH_TOKEN')
+  const user = await getUserInfoByToken(token?.value)
+
   return (
     <html lang='en'>
       <body>
+        <nav>
+          <Navigation username={user?.username} logoutAction={logoutAction} />
+        </nav>
         <main>{children}</main>
       </body>
     </html>
